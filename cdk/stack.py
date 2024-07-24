@@ -27,6 +27,7 @@ class ScheduledLambdaStack(Stack):
                 ".build/common_layer"
             ),
             compatible_runtimes=[_lambda.Runtime.PYTHON_3_10],
+            compatible_architectures=[_lambda.Architecture.X86_64, _lambda.Architecture.ARM_64],
             removal_policy=RemovalPolicy.DESTROY,
         )
 
