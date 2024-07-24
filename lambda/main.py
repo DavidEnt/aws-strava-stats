@@ -20,7 +20,7 @@ def lambda_handler(event, context):
         "html_txt": f"Last week you were active for {round(active_hours, 1)} hours.",
         "to_addresses": ["david.enthoven@live.nl"],
     }
-    print(message["text"])
+    print(f"Sending the following message: {message}")
 
     sqs_client = boto3.client("sqs")
     sqs_client.send_message(
