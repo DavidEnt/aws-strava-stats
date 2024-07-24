@@ -26,7 +26,7 @@ class ScheduledLambdaStack(Stack):
             code=_lambda.Code.from_asset(
                 ".build/common_layer"
             ),
-            compatible_runtimes=[_lambda.Runtime.PYTHON_3_9],
+            compatible_runtimes=[_lambda.Runtime.PYTHON_3_10],
             removal_policy=RemovalPolicy.DESTROY,
         )
 
