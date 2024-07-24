@@ -4,6 +4,7 @@ from aws_cdk import (
     aws_iam as iam,
     aws_events as events,
     aws_events_targets as events_targets,
+    RemovalPolicy
 )
 from constructs import Construct
 
@@ -13,10 +14,20 @@ class ScheduledLambdaStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        layer = _lambda.LayerVersion.from_layer_version_arn(
+        # layer = _lambda.LayerVersion.from_layer_version_arn(
+        #     self,
+        #     "Layer_Version",
+        #     "arn:aws:lambda:eu-west-1:077369991239:layer:requests:1",
+        # )
+
+        layer = _lambda.LayerVersion(
             self,
             "Layer_Version",
-            "arn:aws:lambda:eu-west-1:077369991239:layer:requests:1",
+            code=_lambda.Code.from_asset(
+                ".build/common_layer"
+            ),
+            compatible_runtimes=[_lambda.Runtime.PYTHON_3_9],
+            removal_policy=RemovalPolicy.DESTROY,
         )
 
         # Define the Lambda function resource

@@ -37,8 +37,12 @@ jobs:
       - name: Install dependencies
         run: npm install -g aws-cdk
 
-      - name: Install requried packages
-        run: pip install -r requirements.txt
+      - name: Install requried packages in a lambda layer
+        run: |
+          mkdir -p .build/common_layer 
+          poetry export --without=dev --without-hashes --format=requirements.txt > .build/common_layer/requirements.txt
+
+          pip install -r  .build/common_layer/requirements.txt -t .build/common_layer
       
       - name: Synth stack
         run: cdk synth

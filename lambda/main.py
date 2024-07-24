@@ -17,8 +17,8 @@ def lambda_handler(event, context):
 
     message = {
         "subject": "Weekly Strava Report",
-        "text": f"Last week you were active for {round(active_hours, 1)} hours.",
-        "to": ["david.enthoven@live.nl"],
+        "html_txt": f"Last week you were active for {round(active_hours, 1)} hours.",
+        "to_addresses": ["david.enthoven@live.nl"],
     }
     print(message["text"])
 

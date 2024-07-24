@@ -1,4 +1,4 @@
 {
   "app": "python app.py",
-  "reqquireApproval": "never"
+  "requireApproval": "never"
 }
